@@ -18,6 +18,11 @@ public class Main {
 			}
 		}
 
+		if(rCnt==0 || bCnt==0) {
+			System.out.println(0);
+			return;
+		}
+		
 		int minN = 987654321;
 
 		int cnt = 0;
