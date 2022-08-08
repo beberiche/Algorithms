@@ -1,31 +1,51 @@
-function solution(codeOwnersMap, directory) {
-  // if(typeof codeOwnersMap.directory === "Array") {
-  //     return co
-  // } else if(typeof codeOwnersMap.directory === "Object") {
+function parse(route, path) {
+  /* 작성해주세요 */
+  const routeArr = route.split("/");
+  const pathArr = path.split("/");
 
-  // }
-  if(directory.includes("/")) {
-      const arr = [r1, r2, r3, r4, r5] = directory.split("/");
-      let answer = codeOwnersMap[r1];
-      for(let i=1; i<5; i++) {
-        if(arr[i]){
-          answer = answer[arr[i]];
-        } else {
-          break
+  let m = true;
+  let p = {};
+  if(pathArr.length===1 && routeArr.length===1) {
+    m = true;
+  } else if(routeArr.length ===1) {
+    m = true;
+  } else if(pathArr.length ===1) {
+    m = false 
+  } else if(pathArr.length > routeArr.length) {
+    m = false
+  }
+  else {
+    for(let i=1; i<routeArr.length; i++) {
+      if(i%2==1) {
+        if(i < pathArr.length && routeArr[i] !== pathArr[i]) {
+          m = false;
+          break;
+        }
+      } else {
+        if(i<pathArr.length) {
+          p[routeArr[i].substring(1, routeArr[i].length-1)] = pathArr[i];
         }
       }
-      return answer
-  } else {
-      return codeOwnersMap[directory]
+    }
   }
+
+  if(m) {
+    return {
+      matches: m,
+      params : p
+    } 
+  } else {
+    return {
+      matches: m,
+    }
+  }
+
+
 }
 
-const codeOwnersMap = {
-  "scripts" : ["배수진"],
-  "services": {
-    "business-ledger" : ["고찬균","배수진"],
-    "toss-card" : ["채주민", "유재섭"],
-    "payments": ["유재섭"],
-  }
+function solution(route, path) {
+  var result = parse(route, path);
+  return JSON.stringify(result);
 }
-console.log(solution(codeOwnersMap, "services/business-ledger"))
+
+solution("/service/[id]/develop")
