@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 
-public class solution {
+public class Solution {
     static int N;
     static int ans;
     public static void main(String[] args) {
