@@ -10,7 +10,6 @@ public class Solution {
     static int ans;
     static int move;
     static int[] currPos;
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
