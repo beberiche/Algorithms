@@ -23,7 +23,7 @@ public class Solution {
                 for (int j = 0; j < N; j++) {
                     map[i][j] = sc.nextInt();
                     // r값 c값
-                    if ((i==0 || j==0) && map[i][j] == 1) map[i][j] = 2;
+                    if ((i==0 || j==0 || i==N-1 || j==N-1) && map[i][j] == 1) map[i][j] = 2;
                     else if (map[i][j] == 1) raxiPos.add(new int[]{i, j});
                 }
             }
