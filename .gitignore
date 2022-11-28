@@ -73,11 +73,13 @@ local.properties
 
 #custom
 .classpath
-.idea
+.idea/
 .metadata
 .recommenders
 .project
+*/out/
 */data/
+.iml
 
 #project_custom
 사슴사냥대회

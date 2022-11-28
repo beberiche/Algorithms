@@ -1,4 +1,4 @@
-package src.Q20002_사과나무;
+package Q20002_사과나무;
 
 import java.util.Scanner;
 
