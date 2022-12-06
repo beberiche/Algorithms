@@ -1,76 +1,76 @@
 package Q1504_특정한_최단_경로;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
-    static class Node implements Comparable<Node> {
-        int v, weight;
+    static class Node {
+        // 진행하는 경로
+        int next;
+        // 비용
+        int cost;
 
-        public Node(int v, int weight) {
-            this.v = v;
-            this.weight = weight;
-        }
-
-
-        @Override
-        public int compareTo(Node o) {
-            return Integer.compare(this.weight, o.weight);
+        public Node(int next, int cost) {
+            this.next = next;
+            this.cost = cost;
         }
     }
 
-    static final int INF = 987654321;
-    static int V, E;
-    static List<Node>[] adjList;
+    static List<Node>[] map;
+    static final int INF = (int) 1e9;
+    static int N;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        int E = Integer.parseInt(st.nextToken());
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        map = new ArrayList[N + 1];
 
-        V = sc.nextInt();
-        E = sc.nextInt();
+        for(int i=1; i<=N; i++) map[i] = new ArrayList<>();
 
-        adjList = new ArrayList[V];
-        for(int i=0; i<V; i++) {
-            adjList[i] = new ArrayList<>();
+        while(--E>=0) {
+            st = new StringTokenizer(br.readLine());
+            int prev = Integer.parseInt(st.nextToken());
+            int next = Integer.parseInt(st.nextToken());
+            int cost = Integer.parseInt(st.nextToken());
+
+            map[prev].add(new Node(next, cost));
+            map[next].add(new Node(prev, cost));
         }
 
-//        dist = new int[V];
+        st = new StringTokenizer(br.readLine());
+        int nodeA = Integer.parseInt(st.nextToken());
+        int nodeB = Integer.parseInt(st.nextToken());
 
-        for(int i=0; i<E; i++) {
-            int st = sc.nextInt()-1;
-            int ed = sc.nextInt()-1;
-            int w = sc.nextInt();
-            adjList[st].add(new Node(ed, w));
-            adjList[ed].add(new Node(st, w));
-        }
+        // 반드시 두 정점 a,b 를 지나는 최단 경로
+        // (시작점 -> a) + (a -> b) + (b -> 끝점) 혹은 (시작점 -> b) + (b -> a) + (a -> 끝점)
+        int case1 = dijkstra(1, nodeA) + dijkstra(nodeA, nodeB) + dijkstra(nodeB, N);
+        int case2 = dijkstra(1, nodeB) + dijkstra(nodeB, nodeA) + dijkstra(nodeA, N);
 
-
-        int node1 = sc.nextInt()-1;
-        int node2 = sc.nextInt()-1;
-        int ans1 = dijkstra(0, node1) + dijkstra(node1, node2) + dijkstra(node2, V-1);
-        int ans2 = dijkstra(0, node2) + dijkstra(node2, node1) + dijkstra(node1, V-1);
-
-        if(ans1 >= INF || ans2 >= INF || ans1 < 0 || ans2 < 0) System.out.println(-1);
-        else System.out.println(Math.min(ans1, ans2));
+        if (case1 < 0 || case2 < 0 || case1 >= INF || case2>= INF) System.out.println(-1);
+        else System.out.println(Math.min(case1, case2));
     }
 
     private static int dijkstra(int st, int ed) {
-        PriorityQueue<Node> pq = new PriorityQueue<>();
-        boolean[] visited = new boolean[V];
-        int[] dist = new int[V];
+        PriorityQueue<Node> pq = new PriorityQueue<>((n1, n2) -> n1.cost - n2.cost);
+        boolean[] visited = new boolean[N+1];
+        int[] dist = new int[N+1];
         Arrays.fill(dist, INF);
 
         dist[st] = 0;
         pq.add(new Node(st, 0));
 
-        while(!pq.isEmpty()) {
+        while (!pq.isEmpty()) {
             Node curr = pq.poll();
-            if(visited[curr.v]) continue;
-            visited[curr.v] = true;
+            if (visited[curr.next]) continue;
+            visited[curr.next] = true;
 
-            for(Node n : adjList[curr.v]) {
-                if(dist[n.v] > n.weight + curr.weight) {
-                    dist[n.v] = n.weight + curr.weight;
-                    pq.add(new Node(n.v, dist[n.v]));
+            for (Node nNode : map[curr.next]) {
+                if (dist[nNode.next] > nNode.cost + curr.cost) {
+                    dist[nNode.next] = nNode.cost + curr.cost;
+                    pq.add(new Node(nNode.next, dist[nNode.next]));
                 }
             }
         }
