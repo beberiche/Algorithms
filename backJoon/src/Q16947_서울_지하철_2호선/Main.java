@@ -1,4 +1,4 @@
-package Q16047_서울_지하철_2호선;
+package Q16947_서울_지하철_2호선;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
