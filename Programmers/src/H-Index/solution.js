@@ -10,15 +10,17 @@ function findHIdx(citations,st,ed) {
   
   const mid = Math.floor((st+ed)/2);
 
-  let cnt = 0;
-  for(const n of citations) n>=mid && cnt++;
+  let cnt1 = 0;
+  let cnt2 = 0;
+  for(const n of citations) {
+      if(n>=mid) cnt1++;
+      if(n<=mid) cnt2++;
+  };
   
-  if(cnt>=mid) {
+  if(cnt1>=mid && cnt2<=mid) {
     answer = Math.max(answer, mid);
     findHIdx(citations,mid+1,ed);
-    return;
-  } 
-  findHIdx(citations,st,mid-1);
+  } else {
+    findHIdx(citations,st,mid-1);
+  }
 }
-
-console.log(solution([3,0,6,1,5]));
