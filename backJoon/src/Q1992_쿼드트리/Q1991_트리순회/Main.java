@@ -1,4 +1,4 @@
-package Q1991_트리순회;
+package Q1992_쿼드트리.Q1991_트리순회;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
