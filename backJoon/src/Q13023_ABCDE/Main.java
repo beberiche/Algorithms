@@ -3,51 +3,56 @@ package Q13023_ABCDE;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static List<Integer> adjList[];
+    static boolean[] visited;
+    static int ans;
 
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
-		for (int i = 0; i < M; i++) {
-			st = new StringTokenizer(br.readLine());
-			list.add(new ArrayList<>());
-			list.get(i).add(Integer.parseInt(st.nextToken()));
-			list.get(i).add(Integer.parseInt(st.nextToken()));
-		}
+        adjList = new ArrayList[N];
+        for (int i = 0; i < N; i++) {
+            adjList[i] = new ArrayList<>();
+        }
 
-		for (int i = 0; i < M; i++) {
-			for (int j = 0; j < M; j++) {
-				if (i == j)
-					continue;
-				int a = list.get(i).get(0);
-				int b = list.get(i).get(1);
-				int c = list.get(j).get(0);
-				int d = list.get(j).get(1);
-				if (a == b || a == c || a == d || b == c || b == d || c == d) {
-					continue;
-				}
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int n1 = Integer.parseInt(st.nextToken());
+            int n2 = Integer.parseInt(st.nextToken());
+            adjList[n1].add(n2);
+            adjList[n2].add(n1);
+        }
 
-				for (int l = 0; l < M; l++) {
-					for (int k = 0; k < 2; k++) {
-						int e = list.get(l).get(k);
-						if (a == e || b == e || c == e || d == e) {
-							continue;
-						}
-					}
-					System.out.println(1);
-					return;
-				}
+        for (int i = 0; i < N; i++) {
+            ans = 1;
+            visited = new boolean[N];
+            DFS(i, ans);
+            if(ans >= 5) {
+                System.out.println(1);
+                return;
+            }
+        }
+        System.out.println(0);
+        br.close();
+    }
 
-			}
+    private static void DFS(int idx, int cnt) {
+        if(visited[idx]) return;
+        if(cnt >= 5 || ans >= 5) {
+            ans = 5;
+            return;
+        }
 
-		}
-		System.out.println(0);
-	}
+        visited[idx] = true;
+        for(Integer nNode : adjList[idx]) DFS(nNode, cnt+1);
+        visited[idx] = false;
+    }
 }
