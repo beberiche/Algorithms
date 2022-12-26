@@ -49,8 +49,9 @@ public class Main {
                 map[nr][nc] = '.';
                 DFS(nr, nc, dist + 1, eat + 1);
                 map[nr][nc] = 'S';
+            } else {
+                DFS(nr, nc, dist + 1, eat);
             }
-            DFS(nr, nc, dist + 1, eat);
         }
     }
 
