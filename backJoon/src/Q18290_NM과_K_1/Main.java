@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 
 public class Main {
     static int[][] map;
+    static boolean[][] visited;
     static int N, M, K;
     static int ans = -40001;
 
@@ -24,49 +25,32 @@ public class Main {
             }
         }
 
-        int[][] sel = new int[K][2];
-        for (int i = 0; i < K; i++) {
-            for (int j = 0; j < 2; j++) {
-                sel[i][j] = -1;
-            }
-        }
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                sel[0][0] = i;
-                sel[0][1] = j;
-                comb(i, j, 1, map[i][j], sel);
-                sel[0][0] = -1;
-                sel[0][1] = -1;
-            }
-        }
+        visited = new boolean[N][M];
+        comb(0, -1, 0, 0);
+
         System.out.println(ans);
     }
 
-    private static void comb(int r, int c, int cnt, int sum, int[][] sel) {
+    private static void comb(int r, int c, int cnt, int sum) {
         if (cnt >= K) {
             ans = Math.max(sum, ans);
             return;
         }
 
-        for (int i = r; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                if (Math.abs(i - r) + Math.abs(j - c) <= 1) continue;
-                if (check(sel, i, j)) continue;
-                sel[cnt][0] = i;
-                sel[cnt][1] = j;
-                comb(i, j, cnt + 1, sum + map[i][j], sel);
-                sel[cnt][0] = -1;
-                sel[cnt][1] = -1;
+        int is = c + 1 >= M ? r + 1 : r;
+        int js = c + 1 >= M? 0 : c + 1;
+        for (int i = is; i < N; i++) {
+            for (int j = js; j < M; j++) {
+                int mi = i - 1;
+                int mj = j - 1;
+                if (mi >= 0 && visited[mi][j]) continue;
+                if (mj >= 0 && visited[i][mj]) continue;
+
+                visited[i][j] = true;
+                comb(i, j, cnt + 1, sum + map[i][j]);
+                visited[i][j] = false;
             }
+            js = 0;
         }
     }
-
-    private static boolean check(int[][] sel, int r, int c) {
-        for (int i = 0; i < K; i++) {
-            if (sel[i][0] == -1) continue;
-            if (Math.abs(sel[i][0] - r) + Math.abs(sel[i][1] - c) <= 1) return true;
-        }
-        return false;
-    }
-
 }
