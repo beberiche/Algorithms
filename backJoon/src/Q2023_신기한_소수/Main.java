@@ -24,6 +24,7 @@ public class Main {
             return;
         }
 
+        // 숫자 누적하기
         for (int i = 1; i <= 9; i++) {
             if (cnt == 0 && !prime[i]) continue;
             if (checkPrime(str + i)) DFS(str + i, cnt + 1);
