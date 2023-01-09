@@ -3,11 +3,12 @@ using namespace std;
 const int dr[4] = {-1, 0, 1, 0};
 const int dc[4] = {0, 1, 0, -1};
 char arr[24][24];
-int ans = 1;
+bool check[26];
+int ans;
 int R, C;
 
-void dfs(int r, int c, string str) {
-    ans = max(ans, (int)str.length());
+void dfs(int r, int c, int dep) {
+    ans = max(ans, dep);
     for (int d = 0; d < 4; d++) {
         int nr = r + dr[d];
         int nc = c + dc[d];
@@ -15,27 +16,28 @@ void dfs(int r, int c, string str) {
         if (nr < 0 || nc < 0 || nr >= R || nc >= C)
             continue;
 
-        if (str.find(arr[nr][nc]) == string::npos)
-            dfs(nr, nc, str + arr[nr][nc]);
+        if (check[arr[nr][nc] - 'A'])
+            continue;
+
+        check[arr[nr][nc] - 'A'] = true;
+        dfs(nr, nc, dep + 1);
+        check[arr[nr][nc] - 'A'] = false;
     }
 }
 
 int main(void) {
     int T;
-    ios_base ::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    cin >> T;
+    scanf("%d", &T);
     for (int t = 1; t <= T; t++) {
-        cin >> R >> C;
+        scanf("%d %d", &R, &C);
         for (int i = 0; i < R; i++) {
-            cin >> arr[i];
+            scanf("%s", arr[i]);
         }
-        ans = 1;
-        string tmp;
-        tmp = arr[0][0];
-        dfs(0, 0, tmp);
-        cout << "#" << t << " " << ans << "\n";
+        check[arr[0][0] - 'A'] = true;
+        ans = 0;
+        dfs(0, 0, 1);
+        check[arr[0][0] - 'A'] = false;
+        printf("#%d %d\n", t, ans);
     }
     return 0;
 }
