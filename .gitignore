@@ -78,7 +78,7 @@ local.properties
 .metadata
 .recommenders
 .project
-*/out/
+out/
 */data/
 .iml
 
