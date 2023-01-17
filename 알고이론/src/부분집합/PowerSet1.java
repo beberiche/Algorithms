@@ -18,5 +18,4 @@ public class PowerSet1 {
 			System.out.println("지금까지 : " + count);
 		}
 	}
-
 }
