@@ -1,11 +1,15 @@
 package Q1230_암호문3;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 public class Solution {
-    static int NODE_MAX = 100000;
+    static int NODE_MAX = 5000;
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     static class Node {
         int data;
@@ -98,26 +102,25 @@ public class Solution {
             }
         }
 
-        void print(StringBuilder sb) {
+        void print() throws Exception {
             int cnt = 10;
             Node currNode = head;
             while(--cnt >=0) {
-                sb.append(currNode.data).append(" ");
+                bw.write(currNode.data +" ");
                 currNode = currNode.next;
-                if(currNode == null) break;
             }
         }
     }
 
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         int T = 10;
 
         StringTokenizer stk;
         for (int t = 1; t <= T; t++) {
             LinkedList list = new LinkedList();
-            StringBuilder sb = new StringBuilder();
-            sb.append("#").append(t).append(" ");
+            bw.write("#");
+            bw.write(t + " ");
             int N = Integer.parseInt(br.readLine());
             stk = new StringTokenizer(br.readLine());
             for (int i = 0; i < N; i++) {
@@ -152,8 +155,11 @@ public class Solution {
                         break;
                 }
             }
-            list.print(sb);
-            System.out.println(sb.toString());
+            list.print();
+            bw.write("\n");
         }
+        bw.flush();
+        br.close();
+        bw.close();
     }
 }
