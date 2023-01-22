@@ -6,14 +6,12 @@ class Node {
 
     public Node(int data) {
         this.data = data;
-        this.next = null;
     }
 }
 
 public class UserSolution {
 
     private final static int MAX_NODE = 10000;
-
     private Node[] node = new Node[MAX_NODE];
     private int nodeCnt = 0;
     private Node head;
@@ -41,7 +39,7 @@ public class UserSolution {
 
     public void addNode2Tail(int data) {
         Node newNode = getNode(data);
-        if(head == null) {
+        if (head == null) {
             head = newNode;
             return;
         }
@@ -76,25 +74,17 @@ public class UserSolution {
         Node nextNode = head;
         int tmp = nodeCnt;
         while (--tmp >= 0) {
-            if (nextNode.data == data) {
-                break;
-            }
+            if (nextNode.data == data) break;
             preNode = nextNode;
             nextNode = nextNode.next;
         }
-        if(tmp < 0) {
-            return;
-        }
-
-        if(nextNode.next == null) {
+        if (tmp < 0) return;
+        if (nextNode.next == null)
             preNode.next = null;
-        } else if(preNode == null) {
+        else if (preNode == null) {
             head = nextNode.next;
             nextNode.next = null;
-        } else {
-            preNode.next = nextNode.next;
-        }
-
+        } else preNode.next = nextNode.next;
     }
 
     public int getList(int[] output) {
