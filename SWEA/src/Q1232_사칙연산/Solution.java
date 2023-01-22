@@ -1,14 +1,15 @@
 package Q1232_사칙연산;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Solution {
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("./data/input1232.txt"));
-		Scanner sc = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		for (int T = 1; T <= 10; T++) {
-			int N = Integer.parseInt(sc.nextLine());
+			int N = Integer.parseInt(br.readLine());
 			// op용 배열
 			String[] op = new String[N + 1];
 			// node[][0] = data
@@ -18,7 +19,7 @@ public class Solution {
 
 			// 노드 생성
 			for (int i = 1; i <= N; i++) {
-				String[] temp = sc.nextLine().split(" ");
+				String[] temp = br.readLine().split(" ");
 				if ("/*+-".contains(temp[1])) {
 					op[i] = temp[1];
 					node[i][1] = Integer.parseInt(temp[2]);
