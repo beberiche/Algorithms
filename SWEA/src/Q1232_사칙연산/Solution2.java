@@ -28,10 +28,8 @@ public class Solution2 {
                 if (stk.hasMoreTokens()) {
                     int left = Integer.parseInt(stk.nextToken());
                     int right = Integer.parseInt(stk.nextToken());
-                    nodeArr[left] = new Node();
-                    nodeArr[right] = new Node();
-                    nodeArr[idx].left = nodeArr[left];
-                    nodeArr[idx].right = nodeArr[right];
+                    nodeArr[idx].left = nodeArr[left] = new Node();
+                    nodeArr[idx].right = nodeArr[right] = new Node();
                 }
             }
             sb.append(postOrder(nodeArr[1])).append("\n");
@@ -41,18 +39,11 @@ public class Solution2 {
 
     private static int postOrder(Node node) {
         if (node.left == null || node.right == null) return Integer.parseInt(node.val);
-
         int left = postOrder(node.left);
         int right = postOrder(node.right);
-        if (node.val.equals("-")) {
-            return left - right;
-        } else if (node.val.equals("+")) {
-            return left + right;
-        } else if (node.val.equals("/")) {
-            return left / right;
-        } else {
-            return left * right;
-        }
+        if (node.val.equals("-")) return left - right;
+        else if (node.val.equals("+")) return left + right;
+        else if (node.val.equals("/")) return left / right;
+        else return left * right;
     }
-
 }
