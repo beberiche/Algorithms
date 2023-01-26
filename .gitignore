@@ -87,6 +87,8 @@ out/
 *.exe
 *.out
 *.app
+cmake-build-debug
+CMakeLists.txt
 
 #project_custom
 사슴사냥대회
