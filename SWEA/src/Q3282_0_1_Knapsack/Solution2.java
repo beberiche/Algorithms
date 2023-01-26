@@ -13,7 +13,6 @@ public class Solution2 {
         int T = Integer.parseInt(br.readLine());
         StringTokenizer stk;
         for(int t=1; t<=T; t++) {
-            sb.append("#").append(t).append(" ");
             stk = new StringTokenizer(br.readLine());
             N = Integer.parseInt(stk.nextToken());
             K = Integer.parseInt(stk.nextToken());
