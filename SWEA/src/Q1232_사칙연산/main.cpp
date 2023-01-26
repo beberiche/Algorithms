@@ -28,9 +28,10 @@ int postOrder(Node node) {
 }
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
     T = 10;
     for (int t = 1; t <= T; t++) {
-        cout << "#" << t << " ";
         cin >> N;
         memset(nodeArr, 0, sizeof(nodeArr));
         for (int i = 0; i < N; i++) {
@@ -44,7 +45,7 @@ int main() {
                 nodeArr[idx].num = stoi(op);
             }
         }
-        cout << postOrder(nodeArr[1]) << "\n";
+        cout << "#" << t << " " << postOrder(nodeArr[1]) << "\n";
     }
 
     return 0;
