@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 typedef pair<int, int> pi;
-char arr[104][104];
+vector<string> arr;
 bool visited[104][104];
 int dr[4] = {-1, 0, 1, 0}, dc[4] = {0, -1, 0, 1};
 int rLen, cLen;
@@ -37,11 +37,7 @@ int bfs(int i, int j) {
 
 vector<int> solution(vector<string> maps) {
     vector<int> answer;
-    for (int i = 0; i < maps.size(); i++) {
-        string str = maps[i];
-        for (int j = 0; j < str.size(); j++)
-            arr[i][j] = str[j];
-    };
+    arr = maps;
     rLen = maps.size();
     cLen = maps[0].size();
     for (int i = 0; i < rLen; i++) {
