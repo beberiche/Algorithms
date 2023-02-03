@@ -16,6 +16,7 @@ void print() { cout << N - ans; }
 void solve() {
     ans = 0;
     for (int i = 1; i < N; i++) {
+        int cnt = 0;
         int curr = arr[i];
         for (int j = i + 1; j <= N; j++) {
             curr = arr[j] - curr;
