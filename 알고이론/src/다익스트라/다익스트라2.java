@@ -69,14 +69,14 @@ public class 다익스트라2 {
 		while (!pq.isEmpty()) {
 			Node curr = pq.poll(); // 하나 꺼낸다.
 
-			if (visited[curr.v])
-				continue;
-			visited[curr.v] = true; // 선택한 걸로 치고
+//			if (visited[curr.v])
+//				continue;
+//			visited[curr.v] = true; // 선택한 걸로 치고
 
 			// 뽑은 curr으로 부터 출발해서 도착할 수 있는 모든 정점들에 대하여
 			for (Node node : adjList[curr.v]) {
 				// 이미 알고 있는 거리보다 더 가깝게 도달 할 수 있다면
-				if (!visited[node.v] && dist[node.v] > dist[curr.v] + node.weight) {
+				if (dist[node.v] > dist[curr.v] + node.weight) {
 					dist[node.v] = dist[curr.v] + node.weight;
 					pq.add(new Node(node.v, dist[node.v]));
 				}
