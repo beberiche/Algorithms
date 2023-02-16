@@ -19,7 +19,9 @@ string cmpParent(int x, int y) {
 void unionParent(int x, int y) {
     int fx = findSet(x);
     int fy = findSet(y);
-    fx > fy ? p[x] = y : p[y] = x;
+    if (fx == fy)
+        return;
+    fx > fy ? p[findSet(fx)] = findSet(fy) : p[findSet(fy)] = findSet(fx);
 }
 
 void output() { cout << cmpParent(n2, n3) << "\n"; }
