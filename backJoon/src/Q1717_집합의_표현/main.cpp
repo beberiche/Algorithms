@@ -10,40 +10,32 @@ int findSet(int n) {
     return p[n] = findSet(p[n]);
 }
 
-string cmpParent(int x, int y) {
+void output(string ans) { cout << ans << "\n"; }
+
+void unionParent(int x, int y, bool b) {
     int fx = findSet(x);
     int fy = findSet(y);
-    return fx == fy ? "YES" : "NO";
+    if (fx == fy && b)
+        output("YES");
+    else if (fx != fy && b)
+        output("NO");
+    else
+        p[findSet(fy)] = findSet(fx);
 }
-
-void unionParent(int x, int y) {
-    int fx = findSet(x);
-    int fy = findSet(y);
-    if (fx == fy)
-        return;
-    fx > fy ? p[findSet(fx)] = findSet(fy) : p[findSet(fy)] = findSet(fx);
-}
-
-void output() { cout << cmpParent(n2, n3) << "\n"; }
-
-void solve() { n1 ? output() : unionParent(n2, n3); }
 
 void input() {
     cin >> N >> M;
-
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= N; i++)
         p[i] = i;
-    }
-
-    for (int i = 0; i < M; i++) {
-        cin >> n1 >> n2 >> n3;
-        solve();
-    }
 }
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     input();
+    for (int i = 0; i < M; i++) {
+        cin >> n1 >> n2 >> n3;
+        unionParent(n2, n3, n1);
+    }
     return 0;
 }
