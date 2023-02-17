@@ -1,4 +1,4 @@
-package Q14126_Segment_tree_연습_1;
+package Q14126_Segment_Tree_연습_1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
