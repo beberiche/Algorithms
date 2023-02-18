@@ -5,9 +5,9 @@ public class Main {
     static int table[];
     public static void main(String[] args) {
         parent = "ABACAABCCAABACAABA";
-        pattern = "ABC";
+        pattern = "AAAAAD";
 
-        makeTable(parent);
+        makeTable(pattern);
 
         search(parent, pattern);
     }
