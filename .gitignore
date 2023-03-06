@@ -81,6 +81,7 @@ local.properties
 out/
 */data/
 .iml
+production/*
 
 #c++
 .vscode/
