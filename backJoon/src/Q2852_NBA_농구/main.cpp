@@ -43,23 +43,23 @@ void solve() {
         B_win += 48 * 60 - prev_time;
     }
 
-//    string result_A_min =
-//            to_string(A_win / 60) == "0" ? "00" : A_win / 60 < 10 ? ("0" + to_string(A_win / 60)) : to_string(
-//                    A_win / 60);
-//    string result_B_min =
-//            to_string(B_win / 60) == "0" ? "00" : B_win / 60 < 10 ? ("0" + to_string(B_win / 60)) : to_string(
-//                    B_win / 60);
-//    string result_A_sec =
-//            to_string(A_win % 60) == "0" ? "00" : A_win % 60 < 10 ? ("0" + to_string(A_win % 60)) : to_string(
-//                    A_win % 60);
-//    string result_B_sec =
-//            to_string(B_win % 60) == "0" ? "00" : B_win % 60 < 10 ? ("0" + to_string(B_win % 60)) : to_string(
-//                    B_win % 60);
-//    string result_A = result_A_min + ":" + result_A_sec;
-//    string result_B = result_B_min + ":" + result_B_sec;
-//    cout << result_A << "\n" << result_B;
-    printf("%02d:%02d\n", A_win / 60, A_win % 60);
-    printf("%02d:%02d", B_win / 60, B_win % 60);
+    string result_A_min =
+            to_string(A_win / 60) == "0" ? "00" : A_win / 60 < 10 ? ("0" + to_string(A_win / 60)) : to_string(
+                    A_win / 60);
+    string result_B_min =
+            to_string(B_win / 60) == "0" ? "00" : B_win / 60 < 10 ? ("0" + to_string(B_win / 60)) : to_string(
+                    B_win / 60);
+    string result_A_sec =
+            to_string(A_win % 60) == "0" ? "00" : A_win % 60 < 10 ? ("0" + to_string(A_win % 60)) : to_string(
+                    A_win % 60);
+    string result_B_sec =
+            to_string(B_win % 60) == "0" ? "00" : B_win % 60 < 10 ? ("0" + to_string(B_win % 60)) : to_string(
+                    B_win % 60);
+    string result_A = result_A_min + ":" + result_A_sec;
+    string result_B = result_B_min + ":" + result_B_sec;
+    cout << result_A << "\n" << result_B;
+//    printf("%02d:%02d\n", A_win / 60, A_win % 60);
+//    printf("%02d:%02d", B_win / 60, B_win % 60);
 }
 
 
