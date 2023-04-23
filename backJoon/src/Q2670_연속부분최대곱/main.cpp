@@ -2,7 +2,6 @@
 // Created by 김종현 on 2023/04/23.
 //
 #include <iostream>
-#include <cmath>
 #include <vector>
 
 using namespace std;
@@ -18,17 +17,21 @@ void input() {
         v.push_back(num);
     }
 
-//    vv = vector<vector<double>>(N, vector<double>(N, 0));
-    for (int i = 0; i < N; i++) {
-        vv = vector<double>(N, 0);
-        vv[i] = v[i];
-        ans = max(vv[i], ans);
-        for (int j = i + 1; j < N; j++) {
-            vv[j] = vv[j - 1] * v[j];
-            ans = max(vv[j], ans);
-        }
+//    for (int i = 0; i < N; i++) {
+//        vv = vector<double>(N, 0);
+//        vv[i] = v[i];
+//        ans = max(vv[i], ans);
+//        for (int j = i + 1; j < N; j++) {
+//            vv[j] = vv[j - 1] * v[j];
+//            ans = max(vv[j], ans);
+//        }
+//    }
+    double curr = v[0];
+    for (int i = 1; i < N; i++) {
+        curr = v[i] > curr * v[i] ? v[i] : curr * v[i];
+        ans = max(curr, ans);
     }
-    printf("%.3lf",ans);
+    printf("%.3lf", ans);
 }
 
 int main() {
