@@ -31,7 +31,8 @@ void findN() {
         if (sum >= N) sum -= pv[l++];
         else if(r >= pv.size()) break;
         else sum += pv[r++];
-        if (sum == N) ans++;
+        if (sum == N)
+            ans++;
     }
 }
 
