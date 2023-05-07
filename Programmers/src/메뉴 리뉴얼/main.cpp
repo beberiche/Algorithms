@@ -41,9 +41,7 @@ vector<string> solution(vector<string> orders, vector<int> course) {
 
         if(cnt >= 2) {
             for(auto iter = m.begin(); iter!=m.end(); ++iter) {
-                if(course[i]==iter->first.size() && iter->second == cnt) {
-                    answer.push_back(iter->first);
-                }
+                if(course[i]==iter->first.size() && iter->second == cnt) answer.push_back(iter->first);
             }
         }
     }
