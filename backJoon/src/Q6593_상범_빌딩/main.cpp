@@ -18,11 +18,8 @@ void input() {
         for (int j = 0; j < R; j++) {
             cin >> arr[i][j];
             for (int k = 0; k < C; k++) {
-                if (arr[i][j][k] == 'S') {
-                    st = {i, {j, k}};
-                } else if (arr[i][j][k] == 'E') {
-                    ed = {i, {j, k}};
-                }
+                if (arr[i][j][k] == 'S') st = {i, {j, k}};
+                else if (arr[i][j][k] == 'E') ed = {i, {j, k}};
             }
         }
     }
