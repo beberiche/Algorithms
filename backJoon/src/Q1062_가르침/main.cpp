@@ -2,8 +2,8 @@
 #include <vector>
 
 using namespace std;
-int N, K;
-int a[51], t, ans;
+int N, K, a[51], ans;
+//int t
 
 void input() {
     string s;
@@ -12,19 +12,22 @@ void input() {
         for (int j = 0; j < s.size(); j++) {
             int num = (1 << (int) (s[j] - 'a'));
             a[i] |= a[i] & num ? 0 : num;
+            // t |= t & num ? 0 : num;
         }
     }
 }
 
 void solve(int d, int idx, int curr) {
-    if (d <= K) {
+    if (d >= K) {
         int cnt = 0;
-        for (int i = 0; i < N; i++) if ((curr | a[i]) == curr) cnt++;
+        for (int i = 0; i < N; i++) if ((curr & a[i]) == a[i]) cnt++;
         ans = max(ans, cnt);
+        return;
     }
     for (int i = idx; i < 26; i++) {
         int num = 1 << i;
         if (curr & num) continue;
+        //if (!(t & num)) continue;
         solve(d + 1, i + 1, curr | num);
     }
 }
