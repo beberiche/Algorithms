@@ -1,56 +1,42 @@
 #include <iostream>
-#include <string.h>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
-int N, L, ans;
-int ar[101][101], ac[101][101];
-int visited[101];
-string s;
+int N, arr[21][21], ans = 2004;
+vector<int> v1, v2;
+
 void input() {
-    cin >> N >> L;
+    ios::sync_with_stdio(0);
+    cin.tie(0),cout.tie(0);
+    cin >> N;
     for (int i = 0; i < N; i++) {
-        s = "";
         for (int j = 0; j < N; j++) {
-            cin >> ac[i][j];
-            ar[j][i] = ac[i][j];
+            cin >> arr[i][j];
         }
     }
-
 }
 
-void solve(int a[101][101]) {
-    for (int i = 0; i < N; i++) {
-        bool check = true;
-        memset(visited, 0, sizeof(visited));
-        for (int j = 0; j < N - 1; j++) {
-            if (a[i][j] == a[i][j + 1] + 1) {
-                int curr = a[i][j + 1];
-                for (int k = j + 1; k <= j + L; k++) {
-                    if (k >= N || a[i][k] != curr || visited[k]) {
-                        check = false;
-                        break;
-                    }
-                }
-                if (check) {
-                    for (int k = j + 1; k <= j + L; k++) visited[k] = 1;
-                }
-            } else if (a[i][j] == a[i][j + 1] - 1) {
-                int curr = a[i][j];
-                for (int k = j - L + 1; k <= j; k++) {
-                    if (k < 0 || a[i][k] != curr || visited[k]) {
-                        check = false;
-                        break;
-                    }
-                }
-                if (check) {
-                    for (int k = j - L + 1; k <= j; k++) visited[k] = 1;
-                }
-            } else if (a[i][j] - a[i][j + 1] < -1 || a[i][j] - a[i][j + 1] > 1) {
-                check = false;
-                break;
-            }
+int comb(vector<int> &v) {
+    int ret= 0;
+    for (int j = 0; j < v.size(); j++) {
+        for (int k = j + 1; k < v.size(); k++) {
+            ret += arr[v[j]][v[k]] + arr[v[k]][v[j]];
         }
-        if (check) {
-            ans++;
+    }
+    return ret;
+}
+
+void solve() {
+    for (int i = (1<<(N/2))-1; i <= ((1 << N) - 1); i++) {
+        v1.clear(), v2.clear();
+        for (int j = 0; j < N; j++) {
+            if (i & (1 << j)) v1.push_back(j);
+            else v2.push_back(j);
+        }
+        if (v1.size() == N / 2) {
+            int ret = abs(comb(v1) - comb(v2));
+            ans = min(ans, ret);
         }
     }
 }
@@ -61,8 +47,6 @@ void output() {
 
 int main() {
     input();
-    solve(ac);
-    solve(ar);
+    solve();
     output();
 }
-
