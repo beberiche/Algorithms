@@ -1,4 +1,4 @@
-package Q2448_별찍기11;
+package Q2448_별_찍기_11;
 
 import java.util.Scanner;
 
