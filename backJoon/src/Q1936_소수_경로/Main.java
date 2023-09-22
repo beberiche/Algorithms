@@ -61,6 +61,8 @@ public class Main {
                 num += n;
             }
         }
+
+        sb.append("Impossible").append("\n");
     }
 
     private static void output() {
