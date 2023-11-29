@@ -1,4 +1,4 @@
-package Q15653_N과M5;
+package Q15654_N과M5;
 
 import java.util.Arrays;
 import java.util.Scanner;
