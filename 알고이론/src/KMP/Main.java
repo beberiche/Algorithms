@@ -1,4 +1,4 @@
-package KMP;
+package kmp;
 
 public class Main {
     static String parent, pattern;
