@@ -76,12 +76,4 @@ class UserSolution {
 
 			for (int[] next : m[curr[0]]) {
 				if (dist[next[0]] > next[1] + curr[1]) {
-					dist[next[0]] = next[1] + curr[1];
-					pq.add(new int[]{next[0], dist[next[0]]});
-				}
-			}
-		}
-
-		return dist[mTo] == INF ? -1 : dist[mTo];
-	}
-}
+					dist[next[0]] = next
