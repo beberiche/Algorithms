@@ -48,7 +48,7 @@ class Solution {
 	public static void main(String[] args) throws Exception {
 		int T, MARK;
 
-//		 System.setIn(new java.io.FileInputStream("src/Q14614_승강제리그/sample_input.txt"));
+		 System.setIn(new java.io.FileInputStream("src/Q14614_승강제리그/sample_input.txt"));
 		sc = new Scanner(System.in);
 		T = sc.nextInt();
 		MARK = sc.nextInt();
@@ -56,3 +56,7 @@ class Solution {
 		for (int tc = 1; tc <= T; tc++) {
 			int score = run() ? MARK : 0;
 			System.out.println("#" + tc + " " + score);
+		}
+		sc.close();
+	}
+}
