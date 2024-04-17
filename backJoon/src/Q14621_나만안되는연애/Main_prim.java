@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class Main_프림 {
+public class Main_prim {
 	static class Edge {
 		int from, to;
 		int weight;
