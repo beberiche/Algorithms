@@ -7,7 +7,7 @@ import java.util.*;
 public class Main {
 	private static int a[], b[];
 	private static boolean visited[];
-	private static List<int[]> list;
+	private static StringBuilder sb;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,32 +23,24 @@ public class Main {
 		b = new int[M];
 		Arrays.sort(a);
 		visited = new boolean[N];
-		list = new ArrayList<>();
+		sb = new StringBuilder();
 		perm(0);
-		print();
-	}
-
-	private static void print() {
-		StringBuilder sb = new StringBuilder();
-		for(int[] a : list) {
-			for(int num : a) {
-				sb.append(num).append(" ");
-			}
-			sb.append("\n");
-		}
 		System.out.print(sb.toString());
 	}
 
 	private static void perm(int d) {
 		if (d >= b.length) {
-			if(!checkDupl()) list.add(Arrays.copyOf(b, b.length));
+			for(int num : b) sb.append(num).append(" ");
+			sb.append("\n");
 			return;
 		}
 
+		int prev = -1;
 		for (int i = 0; i < a.length; i++) {
-			if (visited[i]) continue;
+			if (visited[i] || prev == a[i]) continue;
 
 			if (d == 0 || (d > 0 && b[d - 1] <= a[i])) {
+				prev = a[i];
 				visited[i] = true;
 				b[d] = a[i];
 				perm(d + 1);
@@ -57,17 +49,4 @@ public class Main {
 		}
 	}
 
-	private static boolean checkDupl() {
-		for(int[] arr : list) {
-			boolean flag = true;
-			for(int i=0; i<arr.length; i++) {
-				if(arr[i] != b[i]) {
-					flag = false;
-					break;
-				}
-			}
-			if(flag) return true;
-		}
-		return false;
-	}
 }
