@@ -30,9 +30,15 @@ public class Main {
         }
 
         maxDepth = (int) Math.floor(Math.log(N) / Math.log(2));
-        parent = new int[N + 1][maxDepth+1];
+        parent = new int[N + 1][maxDepth + 1];
 
         setTree(1, 0, 1);
+
+        for (int k = 1; k <= maxDepth; k++) {
+            for (int i = 1; i <= N; i++) {
+                parent[i][k] = parent[parent[i][k - 1]][k - 1];
+            }
+        }
 
         int M = Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
@@ -40,7 +46,7 @@ public class Main {
             StringTokenizer stk = new StringTokenizer(br.readLine());
             int n1 = Integer.parseInt(stk.nextToken());
             int n2 = Integer.parseInt(stk.nextToken());
-            sb.append(LCA(n1,n2)).append("\n");
+            sb.append(LCA(n1, n2)).append("\n");
         }
         System.out.print(sb.toString());
     }
@@ -83,10 +89,6 @@ public class Main {
     private static void setTree(int node, int p, int d) {
         depth[node] = d;
         parent[node][0] = p;
-
-        for (int i = 1; i <= maxDepth; i++) {
-            parent[node][i] = parent[parent[node][i - 1]][i - 1];
-        }
 
         for (int child : adj[node]) {
             if (child == p) continue;
