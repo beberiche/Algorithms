@@ -80,6 +80,7 @@ public class Main {
         }
 
         if (winner < 3) System.out.println(winner);
+
         else System.out.println(0);
     }
 }
