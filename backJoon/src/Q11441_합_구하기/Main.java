@@ -10,6 +10,7 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         int[] a = new int[N + 1];
 
+
         StringTokenizer stk = new StringTokenizer(br.readLine());
         for (int i = 1; i <= N; i++) {
             int num = Integer.parseInt(stk.nextToken());
