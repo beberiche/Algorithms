@@ -14,20 +14,20 @@ public class Main {
             StringTokenizer stk = new StringTokenizer(br.readLine());
             String s1 = stk.nextToken();
             String s2 = stk.nextToken();
-            int[] a1 = new int[26];
-            int[] a2 = new int[26];
+            int[] a = new int[26];
             for (int i = 0; i < s1.length(); i++) {
-                a1[s1.charAt(i) - 'a']++;
+                a[s1.charAt(i) - 'a']++;
             }
 
-            for(int i=0; i<s2.length(); i++) {
-                a2[s2.charAt(i) - 'a']++;
+            for (int i = 0; i < s2.length(); i++) {
+                a[s2.charAt(i) - 'a']--;
             }
 
             boolean check = true;
-            for(int i=0; i<26; i++) {
-                if(a1[i] != a2[i]) {
+            for (int i = 0; i < 26; i++) {
+                if (a[i] != 0) {
                     check = false;
+                    break;
                 }
             }
 
