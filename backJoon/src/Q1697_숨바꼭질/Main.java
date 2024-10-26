@@ -1,4 +1,4 @@
-package Q1679_숨바꼭질;
+package Q1697_숨바꼭질;
 
 import java.util.LinkedList;
 import java.util.Queue;
