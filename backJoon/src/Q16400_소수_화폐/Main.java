@@ -1,4 +1,4 @@
-package Q16400_소수화폐;
+package Q16400_소수_화폐;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
