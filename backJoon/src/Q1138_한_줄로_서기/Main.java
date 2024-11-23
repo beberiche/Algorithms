@@ -18,10 +18,10 @@ public class Main {
         for (int i = 1; i <= N; i++) {
             int n = Integer.parseInt(stk.nextToken());
             int cnt = 0;
-            for(int j=0; j<N; j++) {
-                if(visited[j]) continue;
+            for (int j = 0; j < N; j++) {
+                if (visited[j]) continue;
 
-                if(cnt == n) {
+                if (cnt == n) {
                     visited[j] = true;
                     a[j] = i;
                     break;
