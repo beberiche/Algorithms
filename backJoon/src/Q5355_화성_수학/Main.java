@@ -1,36 +1,34 @@
 package Q5355_화성_수학;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int num = Integer.parseInt(sc.nextLine());
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new java.io.InputStreamReader(System.in));
+        int num = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < num; i++) {
-            String str = sc.nextLine();
+            String str = br.readLine();
             String[] strs = str.split(" ");
-            double answer = -1;
-            for (int j = 0; j < strs.length; j++) {
-                if (j == 0) {
-                    answer = Double.parseDouble(strs[0]);
-                } else {
-                    switch (strs[j]) {
-                        case "@":
-                            answer *= 3;
-                            break;
-                        case "%":
-                            answer += 5;
-                            break;
-                        case "#":
-                            answer -= 7;
-                            break;
-                        default:
-                            break;
-                    }
+            double answer = Double.parseDouble(strs[0]);
+            for (int j = 1; j < strs.length; j++) {
+                switch (strs[j]) {
+                    case "@":
+                        answer *= 3;
+                        break;
+                    case "%":
+                        answer += 5;
+                        break;
+                    case "#":
+                        answer -= 7;
+                        break;
+                    default:
+                        break;
                 }
-                if (j == strs.length - 1)
-                    System.out.printf("%.2f%n", answer);
             }
+            sb.append(String.format("%.2f", answer)).append("\n");
         }
+        System.out.print(sb.toString().trim());
     }
 }
